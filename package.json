@@ -1,0 +1,30 @@
+{
+  "name": "odin-battleship",
+  "version": "1.0.0",
+  "description": "A battleship game for The Odin Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SDMckone/odin-battleship.git"
+  },
+  "author": "Sean McKone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SDMckone/odin-battleship/issues"
+  },
+  "homepage": "https://github.com/SDMckone/odin-battleship#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "eslint": "^8.44.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "3.0.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
