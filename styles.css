@@ -1,0 +1,19 @@
+@font-face {
+  font-family: turretRoadRegular;
+  src: url(assets/fonts/Turret_Road/TurretRoad-Regular.ttf);
+}
+
+@font-face {
+  font-family: turretRoadBold;
+  src: url(assets/fonts/Turret_Road/TurretRoad-Bold.ttf);
+}
+* {
+  --background-color: #aeaeae;
+  --board-color: #ffffff;
+  --font-color: #000000;
+  --ship-color: #000000;
+  --hit-color: #ff0000;
+  --miss-color: #81ff7e;
+
+  --radius: 10px;
+}
