@@ -1,4 +1,4 @@
-# odin-weather-app
-A weather app for The Odin Project
+# odin-battleship
+A battleship game for The Odin Project
 
-https://sdmckone.github.io/odin-weather-app/
+https://sdmckone.github.io/odin-battleship/
