@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://odin-battleship/./src/index.js?");
+eval("\r\n\n\n//# sourceURL=webpack://odin-battleship/./src/index.js?");
 
 /***/ })
 
