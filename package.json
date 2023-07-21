@@ -4,7 +4,9 @@
   "description": "A battleship game for The Odin Project",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "watch-dev": "npx webpack --watch --mode=development",
+    "watch-prod": "npx webpack --watch --mode=production",
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
