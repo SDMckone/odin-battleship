@@ -460,13 +460,13 @@ test("a ship of length 3 should sink when hit 3 times", () => {
   ]);
 
   const attack1 = testGameboard.receiveAttack(0, 0);
-  expect(attack1.toBe(true));
+  expect(attack1).toBe(true);
 
   const attack2 = testGameboard.receiveAttack(1, 0);
-  expect(attack2.toBe(true));
+  expect(attack2).toBe(true);
 
   const attack3 = testGameboard.receiveAttack(2, 0);
-  expect(attack3.toBe(true));
+  expect(attack3).toBe(true);
 
   expect(shipAndLocation.ship.isSunk()).toBe(true);
 });
@@ -484,13 +484,13 @@ test("a ship of length 3 should not sink when hit 2 times", () => {
   ]);
 
   const attack1 = testGameboard.receiveAttack(0, 0);
-  expect(attack1.toBe(true));
+  expect(attack1).toBe(true);
 
   const attack2 = testGameboard.receiveAttack(1, 0);
-  expect(attack2.toBe(true));
+  expect(attack2).toBe(true);
 
   const attack3 = testGameboard.receiveAttack(3, 0);
-  expect(attack3.toBe(false));
+  expect(attack3).toBe(false);
 
   expect(shipAndLocation.ship.isSunk()).toBe(false);
 });
@@ -504,7 +504,7 @@ test("an attack that lands in the water should not hit any ship", () => {
   expect(shipAndLocation.coordsArray).toEqual([[0, 0]]);
 
   const attack3 = testGameboard.receiveAttack(3, 0);
-  expect(attack3.toBe(false));
+  expect(attack3).toBe(false);
 
   expect(shipAndLocation.ship.isSunk()).toBe(false);
 });

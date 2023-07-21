@@ -51,6 +51,26 @@ class Gameboard {
     return true;
   }
 
+  receiveAttack(x, y) {
+    for (let i = 0; i < this.shipsAndLocations.length; i += 1) {
+      for (
+        let j = 0;
+        j < this.shipsAndLocations[i].coordsArray.length;
+        j += 1
+      ) {
+        if (
+          x === this.shipsAndLocations[i].coordsArray[j][0] &&
+          y === this.shipsAndLocations[i].coordsArray[j][1]
+        ) {
+          this.shipsAndLocations[i].ship.hit();
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   allSunk() {
     for (let i = 0; i < this.shipsAndLocations.length; i += 1) {
       if (!this.shipsAndLocations[i].ship.isSunk()) {
