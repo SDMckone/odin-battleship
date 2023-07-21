@@ -16,17 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_AiPlayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/AiPlayer */ \"./src/modules/AiPlayer.js\");\n/* harmony import */ var _modules_Gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Gameboard */ \"./src/modules/Gameboard.js\");\n\r\n\r\n\r\nconst gameBoard = new _modules_Gameboard__WEBPACK_IMPORTED_MODULE_1__[\"default\"](10, 10);\r\n\r\nconst aiPlayer = new _modules_AiPlayer__WEBPACK_IMPORTED_MODULE_0__[\"default\"](gameBoard);\r\naiPlayer.makeMove();\r\n\n\n//# sourceURL=webpack://odin-battleship/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/modules/AiPlayer.js":
-/*!*********************************!*\
-  !*** ./src/modules/AiPlayer.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass AiPlayer {\r\n  constructor(gameBoard) {\r\n    this.gameBoard = gameBoard;\r\n    this.coordList = [];\r\n\r\n    for (let i = 0; i < gameBoard.width; i += 1) {\r\n      for (let j = 0; j < gameBoard.height; j += 1) {\r\n        this.coordList.push([i, j]);\r\n      }\r\n    }\r\n    console.log(this.coordList);\r\n  }\r\n\r\n  makeMove() {\r\n    const index = Math.floor(Math.random() * this.coordList.length);\r\n\r\n    const coords = this.coordList[index];\r\n    this.coordList = this.coordList.splice(index, 1);\r\n\r\n    return this.gameBoard.receiveAttack(coords[0], coords[1]);\r\n  }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AiPlayer);\r\n\n\n//# sourceURL=webpack://odin-battleship/./src/modules/AiPlayer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_generateGrid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/generateGrid */ \"./src/modules/generateGrid.js\");\n/* harmony import */ var _modules_Gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Gameboard */ \"./src/modules/Gameboard.js\");\n\r\n\r\n\r\nconst playerSide = document.querySelector(\"#player-side\");\r\nconst playerGameBoard = new _modules_Gameboard__WEBPACK_IMPORTED_MODULE_1__[\"default\"](10, 10);\r\nplayerSide.appendChild((0,_modules_generateGrid__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(playerGameBoard, 10, 10, false));\r\n\r\nconst hostileSide = document.querySelector(\"#hostile-side\");\r\nconst hostileGameBoard = new _modules_Gameboard__WEBPACK_IMPORTED_MODULE_1__[\"default\"](10, 10);\r\nhostileGameBoard.placeShip(5, 0, 0, true);\r\nhostileSide.appendChild((0,_modules_generateGrid__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(hostileGameBoard, 10, 10, true));\r\n\n\n//# sourceURL=webpack://odin-battleship/./src/index.js?");
 
 /***/ }),
 
@@ -47,6 +37,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass Ship {\r\n  constructor(length = 5) {\r\n    this.length = length;\r\n    this.hits = 0;\r\n  }\r\n\r\n  hit() {\r\n    this.hits += 1;\r\n  }\r\n\r\n  isSunk() {\r\n    return this.hits === this.length;\r\n  }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ship);\r\n\n\n//# sourceURL=webpack://odin-battleship/./src/modules/Ship.js?");
+
+/***/ }),
+
+/***/ "./src/modules/generateGrid.js":
+/*!*************************************!*\
+  !*** ./src/modules/generateGrid.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction generateGrid(gameboard, width, height, hostileSide) {\r\n  const gridContainer = document.createElement(\"div\");\r\n  gridContainer.classList.add(\"grid-container\");\r\n\r\n  for (let i = 0; i < height; i += 1) {\r\n    const gridRowContainer = document.createElement(\"div\");\r\n    gridRowContainer.classList.add(\"grid-row-container\");\r\n\r\n    for (let j = 0; j < width; j += 1) {\r\n      const gridSquare = document.createElement(\"div\");\r\n      gridSquare.classList.add(\"grid-square\");\r\n      gridSquare.classList.add(\"clear\");\r\n      if (hostileSide) {\r\n        gridSquare.classList.add(\"hostile-side\");\r\n\r\n        gridSquare.addEventListener(\"click\", () => {\r\n          if (gridSquare.classList.contains(\"clear\")) {\r\n            const wasHit = gameboard.receiveAttack(i, j);\r\n            gridSquare.classList.remove(\"clear\");\r\n\r\n            if (wasHit) {\r\n              gridSquare.classList.add(\"hit\");\r\n            } else {\r\n              gridSquare.classList.add(\"miss\");\r\n            }\r\n          }\r\n        });\r\n      }\r\n\r\n      gridRowContainer.appendChild(gridSquare);\r\n    }\r\n\r\n    gridContainer.appendChild(gridRowContainer);\r\n  }\r\n\r\n  return gridContainer;\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (generateGrid);\r\n\n\n//# sourceURL=webpack://odin-battleship/./src/modules/generateGrid.js?");
 
 /***/ })
 
