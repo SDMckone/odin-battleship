@@ -446,7 +446,6 @@ test("placing a ship that would intersect another ship in invalid", () => {
 });
 
 // Testing the receiveAttack function
-
 test("a ship of length 3 should sink when hit 3 times", () => {
   const testGameboard = new Gameboard(10, 10);
   testGameboard.placeShip(3, 0, 0, false);
@@ -507,4 +506,58 @@ test("an attack that lands in the water should not hit any ship", () => {
   expect(attack3).toBe(false);
 
   expect(shipAndLocation.ship.isSunk()).toBe(false);
+});
+
+// Testing the allSunk method
+test("a board with a one un-sunk ship should not register all ships sunk", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(1, 0, 0, false);
+
+  expect(testGameboard.allSunk()).toBe(false);
+});
+
+test("a board with multiple un-sunk ships should not register all ships sunk", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(1, 0, 0, false);
+  testGameboard.placeShip(6, 4, 4, false);
+
+  expect(testGameboard.allSunk()).toBe(false);
+});
+
+test("a board with a single sunk ship and multiple un-sunk ships should not register all ships sunk", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(1, 0, 0, false);
+  testGameboard.placeShip(3, 4, 4, false);
+
+  testGameboard.receiveAttack(0, 0);
+
+  expect(testGameboard.allSunk()).toBe(false);
+});
+
+test("a board with a single ship that is sunk should register all ships sunk", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(1, 0, 0, false);
+  testGameboard.receiveAttack(0, 0);
+
+  expect(testGameboard.allSunk()).toBe(true);
+});
+
+test("a board with multiple ships that are all sunk should register all ships sunk", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(1, 0, 0, false);
+  testGameboard.placeShip(3, 4, 4, false);
+  testGameboard.placeShip(4, 6, 6, true);
+
+  testGameboard.receiveAttack(0, 0);
+
+  testGameboard.receiveAttack(4, 4);
+  testGameboard.receiveAttack(5, 4);
+  testGameboard.receiveAttack(6, 4);
+
+  testGameboard.receiveAttack(6, 6);
+  testGameboard.receiveAttack(6, 7);
+  testGameboard.receiveAttack(6, 8);
+  testGameboard.receiveAttack(6, 9);
+
+  expect(testGameboard.allSunk()).toBe(true);
 });
