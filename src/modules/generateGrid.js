@@ -24,6 +24,9 @@ function generateGrid(gameboard, width, height, hostileSide) {
               gridSquare.classList.add("miss");
             }
           }
+          if (gameboard.allSunk()) {
+            console.log("Won");
+          }
         });
       }
 

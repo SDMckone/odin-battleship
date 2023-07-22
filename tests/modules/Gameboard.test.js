@@ -6,7 +6,7 @@ test("placing a ship of length 5 vertically at coordinates [0,0] returns valid c
   const testGameboard = new Gameboard(10, 10);
   const valid = testGameboard.placeShip(5, 0, 0, false);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([
+  expect(testGameboard.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
@@ -14,7 +14,7 @@ test("placing a ship of length 5 vertically at coordinates [0,0] returns valid c
     [4, 0],
   ]);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [0, 0],
@@ -31,13 +31,13 @@ test("placing a ship of length 3 vertically at coordinates [4,5] returns valid c
   const testGameboard = new Gameboard(10, 10);
   const valid = testGameboard.placeShip(3, 4, 5, false);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([
+  expect(testGameboard.occupiedCoords).toEqual([
     [4, 5],
     [5, 5],
     [6, 5],
   ]);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [4, 5],
@@ -52,9 +52,9 @@ test("placing a ship of length 1 vertically at coordinates [9,9] returns valid c
   const testGameboard = new Gameboard(10, 10);
   const valid = testGameboard.placeShip(1, 9, 9, false);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([[9, 9]]);
+  expect(testGameboard.occupiedCoords).toEqual([[9, 9]]);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([[9, 9]]);
 
@@ -65,7 +65,7 @@ test("placing a ship of length 5 vertically at coordinates [9,9] is invalid", ()
   const testGameboard = new Gameboard(10, 10);
   const invalid = testGameboard.placeShip(5, 9, 9, false);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([]);
+  expect(testGameboard.occupiedCoords).toEqual([]);
 
   expect(invalid).toBe(false);
 });
@@ -74,7 +74,7 @@ test("placing a ship of length 5 vertically at coordinates [6,9] is invalid", ()
   const testGameboard = new Gameboard(10, 10);
   const invalid = testGameboard.placeShip(5, 6, 9, false);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([]);
+  expect(testGameboard.occupiedCoords).toEqual([]);
 
   expect(invalid).toBe(false);
 });
@@ -83,7 +83,7 @@ test("placing a ship of length 1 vertically at coordinates [10,10] is invalid", 
   const testGameboard = new Gameboard(10, 10);
   const invalid = testGameboard.placeShip(1, 10, 10, false);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([]);
+  expect(testGameboard.occupiedCoords).toEqual([]);
 
   expect(invalid).toBe(false);
 });
@@ -93,7 +93,7 @@ test("placing a ship of length 5 horizontally at coordinates [0,0] returns valid
   const testGameboard = new Gameboard(10, 10);
   const valid = testGameboard.placeShip(5, 0, 0, true);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([
+  expect(testGameboard.occupiedCoords).toEqual([
     [0, 0],
     [0, 1],
     [0, 2],
@@ -101,7 +101,7 @@ test("placing a ship of length 5 horizontally at coordinates [0,0] returns valid
     [0, 4],
   ]);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [0, 0],
@@ -118,14 +118,14 @@ test("placing a ship of length 4 horizontally at coordinates [7,4] returns valid
   const testGameboard = new Gameboard(10, 10);
   const valid = testGameboard.placeShip(4, 7, 4, true);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([
+  expect(testGameboard.occupiedCoords).toEqual([
     [7, 4],
     [7, 5],
     [7, 6],
     [7, 7],
   ]);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [7, 4],
@@ -141,12 +141,12 @@ test("placing a ship of length 2 horizontally at coordinates [9,8] returns valid
   const testGameboard = new Gameboard(10, 10);
   const valid = testGameboard.placeShip(2, 9, 8, true);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([
+  expect(testGameboard.occupiedCoords).toEqual([
     [9, 8],
     [9, 9],
   ]);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [9, 8],
@@ -160,7 +160,7 @@ test("placing a ship of length 5 horizontally at coordinates [9,9] is invalid", 
   const testGameboard = new Gameboard(10, 10);
   const invalid = testGameboard.placeShip(5, 9, 9, true);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([]);
+  expect(testGameboard.occupiedCoords).toEqual([]);
 
   expect(invalid).toBe(false);
 });
@@ -169,7 +169,7 @@ test("placing a ship of length 5 horizontally at coordinates [9,6] is invalid", 
   const testGameboard = new Gameboard(10, 10);
   const invalid = testGameboard.placeShip(5, 9, 6, true);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([]);
+  expect(testGameboard.occupiedCoords).toEqual([]);
 
   expect(invalid).toBe(false);
 });
@@ -178,7 +178,7 @@ test("placing a ship of length 1 horizontally at coordinates [10,10] is invalid"
   const testGameboard = new Gameboard(10, 10);
   const invalid = testGameboard.placeShip(1, 10, 10, true);
 
-  expect(testGameboard.getOccupiedCoords()).toEqual([]);
+  expect(testGameboard.occupiedCoords).toEqual([]);
 
   expect(invalid).toBe(false);
 });
@@ -190,13 +190,13 @@ const testGameboard2 = new Gameboard(10, 10);
 test("placing a ship of length 3 vertically at coordinates [0,0] returns valid coords", () => {
   const valid = testGameboard2.placeShip(3, 0, 0, false);
 
-  expect(testGameboard2.getOccupiedCoords()).toEqual([
+  expect(testGameboard2.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
   ]);
 
-  const ship0Location = testGameboard2.getShipsAndLocations()[0];
+  const ship0Location = testGameboard2.shipsAndLocations[0];
 
   expect(ship0Location.coordsArray).toEqual([
     [0, 0],
@@ -210,7 +210,7 @@ test("placing a ship of length 3 vertically at coordinates [0,0] returns valid c
 test("placing a ship of length 5 horizontally at coordinates [5,5] returns valid coords", () => {
   const valid = testGameboard2.placeShip(5, 5, 5, true);
 
-  expect(testGameboard2.getOccupiedCoords()).toEqual([
+  expect(testGameboard2.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
@@ -221,7 +221,7 @@ test("placing a ship of length 5 horizontally at coordinates [5,5] returns valid
     [5, 9],
   ]);
 
-  const ship0Location = testGameboard2.getShipsAndLocations()[0];
+  const ship0Location = testGameboard2.shipsAndLocations[0];
 
   expect(ship0Location.coordsArray).toEqual([
     [0, 0],
@@ -229,7 +229,7 @@ test("placing a ship of length 5 horizontally at coordinates [5,5] returns valid
     [2, 0],
   ]);
 
-  const ship1Location = testGameboard2.getShipsAndLocations()[1];
+  const ship1Location = testGameboard2.shipsAndLocations[1];
 
   expect(ship1Location.coordsArray).toEqual([
     [5, 5],
@@ -245,7 +245,7 @@ test("placing a ship of length 5 horizontally at coordinates [5,5] returns valid
 test("placing a ship of length 4 vertically at coordinates [5,3] returns valid coords", () => {
   const valid = testGameboard2.placeShip(4, 5, 3, false);
 
-  expect(testGameboard2.getOccupiedCoords()).toEqual([
+  expect(testGameboard2.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
@@ -260,7 +260,7 @@ test("placing a ship of length 4 vertically at coordinates [5,3] returns valid c
     [8, 3],
   ]);
 
-  const ship0Location = testGameboard2.getShipsAndLocations()[0];
+  const ship0Location = testGameboard2.shipsAndLocations[0];
 
   expect(ship0Location.coordsArray).toEqual([
     [0, 0],
@@ -268,7 +268,7 @@ test("placing a ship of length 4 vertically at coordinates [5,3] returns valid c
     [2, 0],
   ]);
 
-  const ship1Location = testGameboard2.getShipsAndLocations()[1];
+  const ship1Location = testGameboard2.shipsAndLocations[1];
 
   expect(ship1Location.coordsArray).toEqual([
     [5, 5],
@@ -278,7 +278,7 @@ test("placing a ship of length 4 vertically at coordinates [5,3] returns valid c
     [5, 9],
   ]);
 
-  const ship2Location = testGameboard2.getShipsAndLocations()[2];
+  const ship2Location = testGameboard2.shipsAndLocations[2];
 
   expect(ship2Location.coordsArray).toEqual([
     [5, 3],
@@ -293,7 +293,7 @@ test("placing a ship of length 4 vertically at coordinates [5,3] returns valid c
 test("placing a ship of length 1 horizontally at coordinates [0,1] returns valid coords", () => {
   const valid = testGameboard2.placeShip(1, 0, 1, true);
 
-  expect(testGameboard2.getOccupiedCoords()).toEqual([
+  expect(testGameboard2.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
@@ -309,7 +309,7 @@ test("placing a ship of length 1 horizontally at coordinates [0,1] returns valid
     [0, 1],
   ]);
 
-  const ship0Location = testGameboard2.getShipsAndLocations()[0];
+  const ship0Location = testGameboard2.shipsAndLocations[0];
 
   expect(ship0Location.coordsArray).toEqual([
     [0, 0],
@@ -317,7 +317,7 @@ test("placing a ship of length 1 horizontally at coordinates [0,1] returns valid
     [2, 0],
   ]);
 
-  const ship1Location = testGameboard2.getShipsAndLocations()[1];
+  const ship1Location = testGameboard2.shipsAndLocations[1];
 
   expect(ship1Location.coordsArray).toEqual([
     [5, 5],
@@ -327,7 +327,7 @@ test("placing a ship of length 1 horizontally at coordinates [0,1] returns valid
     [5, 9],
   ]);
 
-  const ship2Location = testGameboard2.getShipsAndLocations()[2];
+  const ship2Location = testGameboard2.shipsAndLocations[2];
 
   expect(ship2Location.coordsArray).toEqual([
     [5, 3],
@@ -336,7 +336,7 @@ test("placing a ship of length 1 horizontally at coordinates [0,1] returns valid
     [8, 3],
   ]);
 
-  const ship3Location = testGameboard2.getShipsAndLocations()[3];
+  const ship3Location = testGameboard2.shipsAndLocations[3];
 
   expect(ship3Location.coordsArray).toEqual([[0, 1]]);
 
@@ -346,7 +346,7 @@ test("placing a ship of length 1 horizontally at coordinates [0,1] returns valid
 test("placing a second ship of length 1 horizontally at coordinates [0,1] is invalid", () => {
   const valid = testGameboard2.placeShip(1, 0, 1, true);
 
-  expect(testGameboard2.getOccupiedCoords()).toEqual([
+  expect(testGameboard2.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
@@ -362,7 +362,7 @@ test("placing a second ship of length 1 horizontally at coordinates [0,1] is inv
     [0, 1],
   ]);
 
-  const ship0Location = testGameboard2.getShipsAndLocations()[0];
+  const ship0Location = testGameboard2.shipsAndLocations[0];
 
   expect(ship0Location.coordsArray).toEqual([
     [0, 0],
@@ -370,7 +370,7 @@ test("placing a second ship of length 1 horizontally at coordinates [0,1] is inv
     [2, 0],
   ]);
 
-  const ship1Location = testGameboard2.getShipsAndLocations()[1];
+  const ship1Location = testGameboard2.shipsAndLocations[1];
 
   expect(ship1Location.coordsArray).toEqual([
     [5, 5],
@@ -380,7 +380,7 @@ test("placing a second ship of length 1 horizontally at coordinates [0,1] is inv
     [5, 9],
   ]);
 
-  const ship2Location = testGameboard2.getShipsAndLocations()[2];
+  const ship2Location = testGameboard2.shipsAndLocations[2];
 
   expect(ship2Location.coordsArray).toEqual([
     [5, 3],
@@ -389,7 +389,7 @@ test("placing a second ship of length 1 horizontally at coordinates [0,1] is inv
     [8, 3],
   ]);
 
-  const ship3Location = testGameboard2.getShipsAndLocations()[3];
+  const ship3Location = testGameboard2.shipsAndLocations[3];
 
   expect(ship3Location.coordsArray).toEqual([[0, 1]]);
 
@@ -399,7 +399,7 @@ test("placing a second ship of length 1 horizontally at coordinates [0,1] is inv
 test("placing a ship that would intersect another ship in invalid", () => {
   const valid = testGameboard2.placeShip(4, 6, 3, true);
 
-  expect(testGameboard2.getOccupiedCoords()).toEqual([
+  expect(testGameboard2.occupiedCoords).toEqual([
     [0, 0],
     [1, 0],
     [2, 0],
@@ -415,7 +415,7 @@ test("placing a ship that would intersect another ship in invalid", () => {
     [0, 1],
   ]);
 
-  const ship0Location = testGameboard2.getShipsAndLocations()[0];
+  const ship0Location = testGameboard2.shipsAndLocations[0];
 
   expect(ship0Location.coordsArray).toEqual([
     [0, 0],
@@ -423,7 +423,7 @@ test("placing a ship that would intersect another ship in invalid", () => {
     [2, 0],
   ]);
 
-  const ship1Location = testGameboard2.getShipsAndLocations()[1];
+  const ship1Location = testGameboard2.shipsAndLocations[1];
 
   expect(ship1Location.coordsArray).toEqual([
     [5, 5],
@@ -433,7 +433,7 @@ test("placing a ship that would intersect another ship in invalid", () => {
     [5, 9],
   ]);
 
-  const ship2Location = testGameboard2.getShipsAndLocations()[2];
+  const ship2Location = testGameboard2.shipsAndLocations[2];
 
   expect(ship2Location.coordsArray).toEqual([
     [5, 3],
@@ -450,7 +450,7 @@ test("a ship of length 3 should sink when hit 3 times", () => {
   const testGameboard = new Gameboard(10, 10);
   testGameboard.placeShip(3, 0, 0, false);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [0, 0],
@@ -474,7 +474,7 @@ test("a ship of length 3 should not sink when hit 2 times", () => {
   const testGameboard = new Gameboard(10, 10);
   testGameboard.placeShip(3, 0, 0, false);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([
     [0, 0],
@@ -498,7 +498,7 @@ test("an attack that lands in the water should not hit any ship", () => {
   const testGameboard = new Gameboard(10, 10);
   testGameboard.placeShip(1, 0, 0, false);
 
-  const shipAndLocation = testGameboard.getShipsAndLocations()[0];
+  const shipAndLocation = testGameboard.shipsAndLocations[0];
 
   expect(shipAndLocation.coordsArray).toEqual([[0, 0]]);
 
@@ -560,4 +560,46 @@ test("a board with multiple ships that are all sunk should register all ships su
   testGameboard.receiveAttack(6, 9);
 
   expect(testGameboard.allSunk()).toBe(true);
+});
+
+// testing the placeAIShips method
+test("a board with one ai ship should contain one ship", () => {
+  const testGameboard = new Gameboard(10, 10);
+  const shipsList = [1];
+  testGameboard.placeShipsRandomly(shipsList);
+
+  expect(testGameboard.shipsAndLocations.length).toBe(1);
+
+  expect(testGameboard.shipsAndLocations[0].ship.length).toBe(1);
+});
+
+// testing the placeAIShips method
+test("a board with four ai ships should contain four ships", () => {
+  const testGameboard = new Gameboard(10, 10);
+  const shipsList = [5, 3, 3, 2];
+  testGameboard.placeShipsRandomly(shipsList);
+
+  expect(testGameboard.shipsAndLocations.length).toBe(4);
+
+  expect(testGameboard.shipsAndLocations[0].ship.length).toBe(5);
+  expect(testGameboard.shipsAndLocations[1].ship.length).toBe(3);
+  expect(testGameboard.shipsAndLocations[2].ship.length).toBe(3);
+  expect(testGameboard.shipsAndLocations[3].ship.length).toBe(2);
+});
+
+// testing the placeAIShips method
+test("a board with seven ai ships should contain six ships", () => {
+  const testGameboard = new Gameboard(10, 10);
+  const shipsList = [5, 4, 3, 2, 2, 1, 1];
+  testGameboard.placeShipsRandomly(shipsList);
+
+  expect(testGameboard.shipsAndLocations.length).toBe(7);
+
+  expect(testGameboard.shipsAndLocations[0].ship.length).toBe(5);
+  expect(testGameboard.shipsAndLocations[1].ship.length).toBe(4);
+  expect(testGameboard.shipsAndLocations[2].ship.length).toBe(3);
+  expect(testGameboard.shipsAndLocations[3].ship.length).toBe(2);
+  expect(testGameboard.shipsAndLocations[4].ship.length).toBe(2);
+  expect(testGameboard.shipsAndLocations[5].ship.length).toBe(1);
+  expect(testGameboard.shipsAndLocations[5].ship.length).toBe(1);
 });

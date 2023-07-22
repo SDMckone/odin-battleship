@@ -51,6 +51,20 @@ class Gameboard {
     return true;
   }
 
+  placeShipsRandomly(shipList) {
+    for (let i = 0; i < shipList.length; i += 1) {
+      let validPlacement;
+      do {
+        validPlacement = this.placeShip(
+          shipList[i],
+          Math.floor(Math.random() * this.height),
+          Math.floor(Math.random() * this.width),
+          Math.random() < 0.5
+        );
+      } while (!validPlacement);
+    }
+  }
+
   receiveAttack(x, y) {
     for (let i = 0; i < this.shipsAndLocations.length; i += 1) {
       for (
@@ -78,14 +92,6 @@ class Gameboard {
       }
     }
     return true;
-  }
-
-  getOccupiedCoords() {
-    return this.occupiedCoords;
-  }
-
-  getShipsAndLocations() {
-    return this.shipsAndLocations;
   }
 }
 
