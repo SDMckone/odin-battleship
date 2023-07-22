@@ -1,25 +1,28 @@
 import generateGrid from "./modules/generateGrid";
 import Gameboard from "./modules/Gameboard";
-import setSquareColor from "./modules/setSquareColor";
+
+const placementGrid = document.querySelector("#placement-grid");
+const placementGameboard = new Gameboard(10, 10);
+placementGrid.appendChild(generateGrid(placementGameboard, 10, 10, false));
 
 const playerSide = document.querySelector("#player-side");
 const playerGameBoard = new Gameboard(10, 10);
 playerGameBoard.placeShipsRandomly([5, 4, 3, 2, 2, 1, 1]);
-let grid = generateGrid(playerGameBoard, 10, 10, false);
-for (let i = 0; i < playerGameBoard.shipsAndLocations.length; i += 1) {
-  for (
-    let j = 0;
-    j < playerGameBoard.shipsAndLocations[i].coordsArray.length;
-    j += 1
-  ) {
-    grid = setSquareColor(
-      grid,
-      playerGameBoard.shipsAndLocations[i].coordsArray[j][0],
-      playerGameBoard.shipsAndLocations[i].coordsArray[j][1],
-      "ship"
-    );
-  }
-}
+const grid = generateGrid(playerGameBoard, 10, 10, false);
+// for (let i = 0; i < playerGameBoard.shipsAndLocations.length; i += 1) {
+//   for (
+//     let j = 0;
+//     j < playerGameBoard.shipsAndLocations[i].coordsArray.length;
+//     j += 1
+//   ) {
+//     grid = setSquareColor(
+//       grid,
+//       playerGameBoard.shipsAndLocations[i].coordsArray[j][0],
+//       playerGameBoard.shipsAndLocations[i].coordsArray[j][1],
+//       "ship"
+//     );
+//   }
+// }
 
 playerSide.appendChild(grid);
 
