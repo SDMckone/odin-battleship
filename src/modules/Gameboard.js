@@ -93,6 +93,15 @@ class Gameboard {
     }
     return true;
   }
+
+  isCoordOccupied(x, y) {
+    for (let i = 0; i < this.occupiedCoords.length; i += 1) {
+      if (this.occupiedCoords[i][0] === x && this.occupiedCoords[i][1] === y) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 export default Gameboard;

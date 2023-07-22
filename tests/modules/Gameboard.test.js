@@ -573,7 +573,6 @@ test("a board with one ai ship should contain one ship", () => {
   expect(testGameboard.shipsAndLocations[0].ship.length).toBe(1);
 });
 
-// testing the placeAIShips method
 test("a board with four ai ships should contain four ships", () => {
   const testGameboard = new Gameboard(10, 10);
   const shipsList = [5, 3, 3, 2];
@@ -587,7 +586,6 @@ test("a board with four ai ships should contain four ships", () => {
   expect(testGameboard.shipsAndLocations[3].ship.length).toBe(2);
 });
 
-// testing the placeAIShips method
 test("a board with seven ai ships should contain six ships", () => {
   const testGameboard = new Gameboard(10, 10);
   const shipsList = [5, 4, 3, 2, 2, 1, 1];
@@ -602,4 +600,30 @@ test("a board with seven ai ships should contain six ships", () => {
   expect(testGameboard.shipsAndLocations[4].ship.length).toBe(2);
   expect(testGameboard.shipsAndLocations[5].ship.length).toBe(1);
   expect(testGameboard.shipsAndLocations[5].ship.length).toBe(1);
+});
+
+// testing the isCoordOccupied method
+test("a board with a no occupied coords should not return any of its coord occupied", () => {
+  const testGameboard = new Gameboard(10, 10);
+  for (let i = 0; i < 10; i += 1) {
+    for (let j = 0; j < 10; j += 1) {
+      expect(testGameboard.isCoordOccupied(i, j)).toBe(false);
+    }
+  }
+});
+
+test("a board with a single occupied coord should return that coord", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(1, 0, 0, false);
+  expect(testGameboard.isCoordOccupied(0, 0)).toBe(true);
+});
+
+test("a board with multiple occupied coords should indicate each as occupied", () => {
+  const testGameboard = new Gameboard(10, 10);
+  testGameboard.placeShip(5, 4, 5, true);
+  expect(testGameboard.isCoordOccupied(4, 5)).toBe(true);
+  expect(testGameboard.isCoordOccupied(4, 6)).toBe(true);
+  expect(testGameboard.isCoordOccupied(4, 7)).toBe(true);
+  expect(testGameboard.isCoordOccupied(4, 8)).toBe(true);
+  expect(testGameboard.isCoordOccupied(4, 9)).toBe(true);
 });
