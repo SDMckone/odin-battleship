@@ -86,8 +86,21 @@ class DomGrid {
             } else {
               gridSquare.classList.add("miss");
             }
+            const aiMove = ai.makeMove();
 
-            ai.makeMove();
+            if (aiMove[0]) {
+              this.otherDomGrid.setSquareColor(
+                aiMove[1][0],
+                aiMove[1][1],
+                "hit"
+              );
+            } else {
+              this.otherDomGrid.setSquareColor(
+                aiMove[1][0],
+                aiMove[1][1],
+                "miss"
+              );
+            }
           }
           if (this.gameboard.allSunk()) {
             console.log("Won");

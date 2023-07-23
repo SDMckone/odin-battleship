@@ -8,16 +8,20 @@ class AiPlayer {
         this.coordList.push([i, j]);
       }
     }
-    console.log(this.coordList);
   }
 
   makeMove() {
     const index = Math.floor(Math.random() * this.coordList.length);
 
     const coords = this.coordList[index];
-    this.coordList = this.coordList.splice(index, 1);
+    this.coordList.splice(index, 1);
 
-    return this.gameBoard.receiveAttack(coords[0], coords[1]);
+    const returnArray = [];
+
+    returnArray.push(this.gameBoard.receiveAttack(coords[0], coords[1]));
+    returnArray.push(coords);
+
+    return returnArray;
   }
 }
 
