@@ -21,6 +21,11 @@ class AiPlayer {
     returnArray.push(this.gameBoard.receiveAttack(coords[0], coords[1]));
     returnArray.push(coords);
 
+    if (this.gameBoard.allSunk()) {
+      alert("Hostile won");
+      document.body.style.display = "none";
+    }
+
     return returnArray;
   }
 }

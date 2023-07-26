@@ -103,7 +103,8 @@ class DomGrid {
             }
           }
           if (this.gameboard.allSunk()) {
-            console.log("Won");
+            alert("Player won");
+            document.body.style.display = "none";
           }
         });
       }
