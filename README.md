@@ -1,4 +1,4 @@
 # odin-battleship
 A battleship game for The Odin Project
 
-https://sdmckone.github.io/odin-battleship/
+https://seanmckone.github.io/odin-battleship/
